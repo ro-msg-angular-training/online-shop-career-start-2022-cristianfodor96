@@ -1,0 +1,35 @@
+table {
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.25rem;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: antiquewhite;
+}
+
+th {
+  border: 1px solid black;
+  width: 300px;
+  padding: 10px;
+}
+td {
+  width: 300px;
+border: 1px solid black;
+  padding: 10px;
+}
+.shop-title {
+  text-align: center;
+}
+
+button {
+  width: 100px;
+  padding: 10px;
+  font-weight: bolder;
+}
+
+.table-products {
+  display: flex;
+  align-content: center;
+}
+

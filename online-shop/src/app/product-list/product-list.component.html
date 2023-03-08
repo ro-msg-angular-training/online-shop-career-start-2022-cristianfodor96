@@ -1,0 +1,21 @@
+<div class="shop-title">
+  <h2>Products</h2>
+</div>
+
+<div class="table-products">
+<table>
+  <tr class="table-headers">
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+   <tr class="table-data" *ngFor="let product of products">
+     <td>{{product.name}}</td>
+     <td>{{product.description}}</td>
+     <td>{{product.price}}</td>
+     <button [routerLink]="['product', product.id]">More <br> details</button>
+   </tr>
+</table>
+</div>
+
+
