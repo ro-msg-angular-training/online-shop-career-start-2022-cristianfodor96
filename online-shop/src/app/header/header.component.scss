@@ -1,9 +1,11 @@
-  .header {
-    text-align: center;
-  }
-  button {
-    width: 200px;
-    height: 100px;
-  }
-
-
+.container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+button {
+  width: 100px;
+  height: 50px;
+}

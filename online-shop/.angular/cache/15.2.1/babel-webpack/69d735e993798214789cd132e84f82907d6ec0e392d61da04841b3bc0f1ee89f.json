@@ -1,0 +1,27 @@
+{
+  "ast": null,
+  "code": "import { __decorate } from \"tslib\";\nimport { Component } from '@angular/core';\nimport { products } from \"../../product\";\nlet ProductListComponent = class ProductListComponent {\n  constructor() {\n    this.products = products;\n  }\n};\nProductListComponent = __decorate([Component({\n  selector: 'app-product-list',\n  templateUrl: './product-list.component.html',\n  styleUrls: ['./product-list.component.scss']\n})], ProductListComponent);\nexport { ProductListComponent };",
+  "map": {
+    "version": 3,
+    "mappings": ";AAAA,SAASA,SAAS,QAAQ,eAAe;AACzC,SAAiBC,QAAQ,QAAO,eAAe;AAOxC,IAAMC,oBAAoB,GAA1B,MAAMA,oBAAoB;EAA1BC;IACL,aAAQ,GAAcF,QAAQ;EAChC;CAAC;AAFYC,oBAAoB,eALhCF,SAAS,CAAC;EACTI,QAAQ,EAAE,kBAAkB;EAC5BC,WAAW,EAAE,+BAA+B;EAC5CC,SAAS,EAAE,CAAC,+BAA+B;CAC5C,CAAC,GACWJ,oBAAoB,CAEhC;SAFYA,oBAAoB",
+    "names": [
+      "Component",
+      "products",
+      "ProductListComponent",
+      "constructor",
+      "selector",
+      "templateUrl",
+      "styleUrls"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\product-list\\product-list.component.ts"
+    ],
+    "sourcesContent": [
+      "import { Component } from '@angular/core';\nimport {Product, products} from \"../../product\";\n\n@Component({\n  selector: 'app-product-list',\n  templateUrl: './product-list.component.html',\n  styleUrls: ['./product-list.component.scss']\n})\nexport class ProductListComponent {\n  products: Product[] = products;\n}\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

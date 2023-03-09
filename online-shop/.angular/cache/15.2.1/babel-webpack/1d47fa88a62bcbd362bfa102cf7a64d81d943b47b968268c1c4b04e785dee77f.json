@@ -1,0 +1,31 @@
+{
+  "ast": null,
+  "code": "import { products } from \"../../product\";\nimport * as i0 from \"@angular/core\";\nimport * as i1 from \"@angular/common\";\nfunction ProductDetailsComponent_div_0_Template(rf, ctx) {\n  if (rf & 1) {\n    i0.ɵɵelement(0, \"div\");\n  }\n}\nexport class ProductDetailsComponent {\n  constructor() {\n    this.products = products;\n  }\n}\nProductDetailsComponent.ɵfac = function ProductDetailsComponent_Factory(t) {\n  return new (t || ProductDetailsComponent)();\n};\nProductDetailsComponent.ɵcmp = /*@__PURE__*/i0.ɵɵdefineComponent({\n  type: ProductDetailsComponent,\n  selectors: [[\"app-product-details\"]],\n  decls: 2,\n  vars: 3,\n  consts: [[4, \"ngIf\"]],\n  template: function ProductDetailsComponent_Template(rf, ctx) {\n    if (rf & 1) {\n      i0.ɵɵtemplate(0, ProductDetailsComponent_div_0_Template, 1, 0, \"div\", 0);\n      i0.ɵɵpipe(1, \"async\");\n    }\n    if (rf & 2) {\n      i0.ɵɵproperty(\"ngIf\", i0.ɵɵpipeBind1(1, 1, ctx.product$));\n    }\n  },\n  dependencies: [i1.NgIf, i1.AsyncPipe],\n  styles: [\"\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */\"]\n});",
+  "map": {
+    "version": 3,
+    "mappings": "AACA,SAAiBA,QAAQ,QAAO,eAAe;;;;;ICD/CC,sBAEM;;;ADON,OAAM,MAAOC,uBAAuB;EALpCC;IAME,aAAQ,GAAcH,QAAQ;;;AADnBE,uBAAuB;mBAAvBA,uBAAuB;AAAA;AAAvBA,uBAAuB;QAAvBA,uBAAuB;EAAAE;EAAAC;EAAAC;EAAAC;EAAAC;IAAA;MCTpCP,wEAEM;;;;MAFAA,yDAAuB",
+    "names": [
+      "products",
+      "i0",
+      "ProductDetailsComponent",
+      "constructor",
+      "selectors",
+      "decls",
+      "vars",
+      "consts",
+      "template"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\product-details\\product-details.component.ts",
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\product-details\\product-details.component.html"
+    ],
+    "sourcesContent": [
+      "import { Component } from '@angular/core';\nimport {Product, products} from \"../../product\";\n\n\n@Component({\n  selector: 'app-product-details',\n  templateUrl: './product-details.component.html',\n  styleUrls: ['./product-details.component.scss']\n})\nexport class ProductDetailsComponent {\n  products: Product[] = products;\n\n}\n",
+      "<div *ngIf=\"product$ | async as product\">\n  \n</div>\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

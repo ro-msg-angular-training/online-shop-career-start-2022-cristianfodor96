@@ -1,0 +1,29 @@
+{
+  "ast": null,
+  "code": "import * as i0 from \"@angular/core\";\nimport * as i1 from \"@angular/router\";\nexport class HeaderComponent {}\nHeaderComponent.ɵfac = function HeaderComponent_Factory(t) {\n  return new (t || HeaderComponent)();\n};\nHeaderComponent.ɵcmp = /*@__PURE__*/i0.ɵɵdefineComponent({\n  type: HeaderComponent,\n  selectors: [[\"app-header\"]],\n  decls: 5,\n  vars: 0,\n  consts: [[1, \"header\"], [\"routerLink\", \"/product-list\"]],\n  template: function HeaderComponent_Template(rf, ctx) {\n    if (rf & 1) {\n      i0.ɵɵelementStart(0, \"div\", 0)(1, \"h1\");\n      i0.ɵɵtext(2, \"My shop\");\n      i0.ɵɵelementEnd();\n      i0.ɵɵelementStart(3, \"button\", 1);\n      i0.ɵɵtext(4, \"Products\");\n      i0.ɵɵelementEnd()();\n    }\n  },\n  dependencies: [i1.RouterLink],\n  styles: [\".header[_ngcontent-%COMP%] {\\n  text-align: center;\\n}\\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFBO0FBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIuaGVhZGVyIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuIl0sInNvdXJjZVJvb3QiOiIifQ== */\"]\n});",
+  "map": {
+    "version": 3,
+    "mappings": ";;AAOA,OAAM,MAAOA,eAAe;AAAfA,eAAe;mBAAfA,eAAe;AAAA;AAAfA,eAAe;QAAfA,eAAe;EAAAC;EAAAC;EAAAC;EAAAC;EAAAC;IAAA;MCP5BC,8BAAoB;MACZA,uBAAO;MAAAA,iBAAK;MAClBA,iCAAmC;MAAAA,wBAAQ;MAAAA,iBAAS",
+    "names": [
+      "HeaderComponent",
+      "selectors",
+      "decls",
+      "vars",
+      "consts",
+      "template",
+      "i0"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\header\\header.component.ts",
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\header\\header.component.html"
+    ],
+    "sourcesContent": [
+      "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-header',\n  templateUrl: './header.component.html',\n  styleUrls: ['./header.component.scss']\n})\nexport class HeaderComponent {\n\n}\n",
+      "<div class=\"header\">\r\n    <h1>My shop</h1>\r\n  <button routerLink=\"/product-list\">Products</button>\r\n</div>\r\n\r\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

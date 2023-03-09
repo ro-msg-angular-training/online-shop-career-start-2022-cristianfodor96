@@ -1,28 +1,19 @@
-table {
-  margin-right: auto;
-  margin-left: auto;
-  font-size: 1.25rem;
-  border: 1px solid black;
-  border-collapse: collapse;
-  text-align: center;
-  background-color: antiquewhite;
+
+.container {
+  display: flex;
+  justify-content: space-between;
 }
 
-th {
-  border: 1px solid black;
-  width: 300px;
-  padding: 10px;
-}
-td {
-  width: 300px;
-border: 1px solid black;
-  padding: 10px;
-}
-.shop-title {
-  text-align: center;
+.shopping-cart {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 2em;
 }
 
-button {
+.more-details {
   width: 100px;
   padding: 10px;
   font-weight: bolder;
@@ -32,4 +23,3 @@ button {
   display: flex;
   align-content: center;
 }
-

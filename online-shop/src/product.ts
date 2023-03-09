@@ -1,27 +1,13 @@
-export interface Product {
-    id: number,
-    name: string,
-    description: string,
-    price: number
-}
+import {Supplier} from "./supplier";
+import {ProductCategory} from "./product-category";
 
-export const products: Array<Product> = [
-   {
-    id: 1,
-    name: "Google Pixel",
-    description: "Google Pixel",
-    price: 3500
-   },
-  {
-    id: 2,
-    name: "Logitech Mouse",
-    description: "Logitech Mouse",
-    price: 250
-  },
-  {
-    id: 3,
-    name: "Razer Headphone",
-    description: "Razer Headphones",
-    price: 350
-  }
-]
+export interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  weight: number;
+  imgUrl: string;
+  supplier: Supplier;
+  productCategory: ProductCategory;
+}

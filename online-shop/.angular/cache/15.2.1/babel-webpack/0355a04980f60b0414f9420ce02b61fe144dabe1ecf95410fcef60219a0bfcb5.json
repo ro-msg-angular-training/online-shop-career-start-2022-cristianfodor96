@@ -1,0 +1,32 @@
+{
+  "ast": null,
+  "code": "import { __decorate } from \"tslib\";\nimport { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { ProductDetailsComponent } from './product-details/product-details.component';\nimport { ProductListComponent } from './product-list/product-list.component';\nimport { HeaderComponent } from './header/header.component';\nlet AppModule = class AppModule {};\nAppModule = __decorate([NgModule({\n  declarations: [AppComponent, ProductDetailsComponent, ProductListComponent, HeaderComponent],\n  imports: [BrowserModule, AppRoutingModule],\n  providers: [],\n  bootstrap: [AppComponent]\n})], AppModule);\nexport { AppModule };",
+  "map": {
+    "version": 3,
+    "mappings": ";AAAA,SAASA,QAAQ,QAAQ,eAAe;AACxC,SAASC,aAAa,QAAQ,2BAA2B;AAEzD,SAASC,gBAAgB,QAAQ,sBAAsB;AACvD,SAASC,YAAY,QAAQ,iBAAiB;AAC9C,SAASC,uBAAuB,QAAQ,6CAA6C;AACrF,SAASC,oBAAoB,QAAQ,uCAAuC;AAC5E,SAASC,eAAe,QAAQ,2BAA2B;AAgBpD,IAAMC,SAAS,GAAf,MAAMA,SAAS,GAAI;AAAbA,SAAS,eAdrBP,QAAQ,CAAC;EACRQ,YAAY,EAAE,CACZL,YAAY,EACZC,uBAAuB,EACvBC,oBAAoB,EACpBC,eAAe,CAChB;EACDG,OAAO,EAAE,CACPR,aAAa,EACbC,gBAAgB,CACjB;EACDQ,SAAS,EAAE,EAAE;EACbC,SAAS,EAAE,CAACR,YAAY;CACzB,CAAC,GACWI,SAAS,CAAI;SAAbA,SAAS",
+    "names": [
+      "NgModule",
+      "BrowserModule",
+      "AppRoutingModule",
+      "AppComponent",
+      "ProductDetailsComponent",
+      "ProductListComponent",
+      "HeaderComponent",
+      "AppModule",
+      "declarations",
+      "imports",
+      "providers",
+      "bootstrap"
+    ],
+    "sourceRoot": "",
+    "sources": [
+      "C:\\Users\\fodorc\\Angular\\online-shop-career-start-2022-cristianfodor96\\online-shop\\src\\app\\app.module.ts"
+    ],
+    "sourcesContent": [
+      "import { NgModule } from '@angular/core';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { ProductDetailsComponent } from './product-details/product-details.component';\nimport { ProductListComponent } from './product-list/product-list.component';\nimport { HeaderComponent } from './header/header.component';\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    ProductDetailsComponent,\n    ProductListComponent,\n    HeaderComponent\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: [],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module",
+  "externalDependencies": []
+}

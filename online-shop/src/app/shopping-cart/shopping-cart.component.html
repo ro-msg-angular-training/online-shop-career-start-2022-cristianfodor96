@@ -1,16 +1,19 @@
 <h1>Shopping Cart</h1>
+<button (click)="clearCart()">Clear Cart</button>
+<button>Checkout</button>
 <div class="container">
   <table>
-<tr>
-  <th>Product name</th>
-  <th>Description</th>
-  <th>Price</th>
-  <th>Quantity</th>
-</tr>
-    <tr *ngFor="let product of products">
-      <td>{{product.name}}</td>
-      <td>{{product.description}}</td>
-      <td>{{product.price}}</td>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Supplier</th>
+      <th>Quantity</th>
+    </tr>
+    <tr *ngFor="let cart of populateCart">
+      <td>{{ cart.product.name }}</td>
+      <td>{{ cart.product.price}}</td>
+      <td>{{ cart.product.supplier.name }}</td>
+      <td>{{cart.quantity}}</td>
     </tr>
   </table>
 </div>

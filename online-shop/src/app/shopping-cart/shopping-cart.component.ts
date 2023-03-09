@@ -1,11 +1,17 @@
 import { Component } from '@angular/core';
-import {Product, products} from "../../product";
+import {ProductService} from "../product.service";
+
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  styleUrls: ['./shopping-cart.component.scss'],
 })
 export class ShoppingCartComponent {
-  products: Product[] = products;
+  constructor(private productService: ProductService) {
+  }
+  populateCart = this.productService.getShoppingCartPopulated();
+  clearCart() {
+    this.productService.clearCart();
+  }
 }
