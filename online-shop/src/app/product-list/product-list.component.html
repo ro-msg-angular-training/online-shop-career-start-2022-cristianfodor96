@@ -1,31 +1,50 @@
 <div class="container">
-  <h1>Products</h1>
-  <button class="shopping-cart" (click)="shoppingCart()">🛒</button>
+    <h1>Products</h1>
+    <button class="shopping-cart" (click)="navigateToShoppingCart()">🛒</button>
 </div>
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+    </ng-container>
 
-<div class="table-products">
-  <table>
-    <tr class="table-headers">
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Weight</th>
-      <th>Image</th>
-      <th>Supplier</th>
-      <th>Product Category</th>
-    </tr>
-    <tr class="table-data" *ngFor="let product of products">
-      <td>{{ product.name }}</td>
-      <td>{{ product.description }}</td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.weight }}</td>
-      <td>{{ product.imgUrl }}</td>
-      <td>{{ product.supplier.name }}</td>
-      <td>{{ product.productCategory.name }}</td>
-      <button class="more-details" (click)="navigateByProductId(product.id)">
-        Product details
-      </button>
+    <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let product">{{ product.description }}</td>
+    </ng-container>
 
-    </tr>
-  </table>
-</div>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let product">{{ product.price }} lei</td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef>Weight</th>
+        <td mat-cell *matCellDef="let product">{{ product.weight }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let product">{{ product.imgUrl }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef>Supplier</th>
+        <td mat-cell *matCellDef="let product">{{ product.supplier.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="product-category">
+        <th mat-header-cell *matHeaderCellDef>Product Category</th>
+        <td mat-cell *matCellDef="let product">{{ product.productCategory.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="product-details">
+        <th mat-header-cell *matHeaderCellDef>Product Details</th>
+        <td mat-cell *matCellDef="let product">
+            <button mat-raised-button color="primary" (click)="navigateToProductById(product.id)">More details</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<button *ngIf="canEdit()" mat-raised-button color="primary" (click)="addNewProduct()">Add new product</button>
+<button mat-raised-button color="primary" (click)="logOut()">Logout</button>

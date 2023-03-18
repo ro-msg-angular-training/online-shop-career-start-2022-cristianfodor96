@@ -1,0 +1,47 @@
+<div class="header">
+    <h1 mat-dialog-title>Edit Product</h1>
+</div>
+<div mat-dialog-content>
+    <form [formGroup]="productForm">
+        <mat-label>Name</mat-label>
+        <mat-form-field>
+            <input matInput placeholder="name" formControlName="name" />
+        </mat-form-field>
+        <mat-label>Description</mat-label>
+        <mat-form-field>
+            <input matInput placeholder="description" formControlName="description" />
+        </mat-form-field>
+        <mat-label>Price</mat-label>
+        <mat-form-field>
+            <input matInput placeholder="price" formControlName="price" />
+        </mat-form-field>
+        <mat-label>Weight</mat-label>
+        <mat-form-field>
+            <input matInput placeholder="weight" formControlName="weight" />
+        </mat-form-field>
+        <mat-label>Image</mat-label>
+        <mat-form-field>
+            <input matInput placeholder="image" formControlName="imgUrl" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Supplier</mat-label>
+            <mat-select formControlName="supplier">
+                <mat-option *ngFor="let supplier of suppliers" [value]="supplier">
+                    {{ supplier.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="productCategory">
+                <mat-option *ngFor="let category of productCategories" [value]="category">
+                    {{ category.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]="null">Cancel</button>
+    <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="productForm.value">Save</button>
+</div>

@@ -1,0 +1,26 @@
+<div class="header">
+    <h1 mat-dialog-title>Checkout</h1>
+</div>
+<div mat-dialog-content>
+    <form [formGroup]="checkoutForm">
+        <mat-form-field>
+            <input matInput placeholder="created" formControlName="created" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="city" formControlName="city" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="country" formControlName="country" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="street" formControlName="street" />
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="county" formControlName="county" />
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]="null">Cancel</button>
+    <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="checkoutForm.value">Save</button>
+</div>

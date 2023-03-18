@@ -1,11 +1,17 @@
 <div *ngIf="product">
-  <h1>Product: {{ product.name }}</h1>
-  <div class="product-details">
-    <p>Name: {{ product.name }}</p>
-    <p>Description: {{ product.description }}</p>
-    <p>Price: {{ product.price }} lei</p>
-  </div>
-  <button (click)="addProductToCart()">Add to shopping cart</button>
-    <button (click)="deleteProduct()">Delete product</button>
-  <button>Edit</button>
+    <h1>Product: {{ product.name }}</h1>
+    <div class="product-details">
+        <p>Name: {{ product.name }}</p>
+        <p>Description: {{ product.description }}</p>
+        <p>Price: {{ product.price }} lei</p>
+        <p>Weight: {{ product.weight }}</p>
+        <p>Image: {{ product.imgUrl }}</p>
+        <p>Supplier: {{ product.supplier.name }}</p>
+        <p>Category: {{ product.productCategory.name }}</p>
+    </div>
+    <div class="btns">
+        <button mat-raised-button color="primary" (click)="addProductToCart()">Add to shopping cart</button>
+        <button mat-raised-button color="primary" (click)="deleteProduct()" *ngIf="canEdit()">Delete product</button>
+        <button mat-raised-button color="primary" (click)="editProduct()" *ngIf="canEdit()">Edit</button>
+    </div>
 </div>

@@ -1,42 +1,34 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {find, Observable} from "rxjs";
-import {Product} from "../product";
-import {ShoppingCart} from "../shopping-cart";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Product } from '../product';
+import { backendURL } from 'src/utils';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
-  cartList: ShoppingCart[] = []
-  API = 'http://localhost:8080/';
+    product!: Product;
 
-  getProducts() {
-    return this.http.get<Product[]>(this.API + 'products');
-  }
-
-  getProductById(id:number): Observable<Product> {
-    return this.http.get<Product>(this.API + 'products/' + id);
-  }
-
-  deletProductById(id:number) {
-    return this.http.delete(this.API + 'products/' + id);
-  }
-  addProductToCart(product: Product) {
-    const productExistInCart = this.cartList
-      .find(orderItem => orderItem.product.id === product.id)
-    if (!productExistInCart) {
-      this.cartList.push({product, quantity: 1});
-      return;
+    getAllProducts(): Observable<Product[]> {
+        return this.http.get<Product[]>(backendURL + 'products');
     }
-    productExistInCart.quantity += 1;
-  }
-  getShoppingCartPopulated() {
-    return this.cartList;
-  }
-  clearCart() {
-    this.cartList = []
-  }
+
+    getProductById(id: number): Observable<Product> {
+        return this.http.get<Product>(backendURL + 'products/' + id);
+    }
+
+    deletProductById(id: number): Observable<void> {
+        return this.http.delete<void>(backendURL + 'products/' + id);
+    }
+
+    editProdut(product: Product): Observable<Product> {
+        return this.http.put<Product>(backendURL + 'products/' + product.id, product);
+    }
+
+    addNewProduct(product: Product): Observable<Product> {
+        return this.http.post<Product>(backendURL + 'products', product);
+    }
 }

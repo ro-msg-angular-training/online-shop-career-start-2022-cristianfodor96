@@ -1,32 +1,80 @@
-import {Component, OnInit} from '@angular/core';
-import { Product} from '../../product';
-import {Router} from "@angular/router";
-import {ProductService} from "../product.service";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Product } from '../../product';
+import { Router } from '@angular/router';
+import { ProductService } from '../product.service';
+import { Subscription } from 'rxjs';
+import { DialogService } from '../dialog.service';
+import { AuthService } from '../auth.service';
+import { Role } from 'src/user-details';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+    selector: 'app-product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit{
-constructor(private router:Router, private productService: ProductService) { }
+export class ProductListComponent implements OnInit, OnDestroy {
+    constructor(
+        private router: Router,
+        private productService: ProductService,
+        private dialogService: DialogService,
+        private authService: AuthService
+    ) {}
 
-  products: Product[] = [];
+    products: Product[] = [];
+    subscription = new Subscription();
+    roles: Role[] = [Role.admin];
 
-ngOnInit() {
-  this.productService.getProducts().subscribe((data: Product[]) => {
-    this.products = data;
-    console.log(data)
-  })
-}
+    ngOnInit(): void {
+        this.subscription.add(
+            this.productService.getAllProducts().subscribe((data: Product[]) => {
+                this.products = data;
+            })
+        );
+    }
 
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
-  navigateByProductId(id: number) {
-    this.router.navigateByUrl(`product/${id}`).then();
-}
+    navigateToProductById(id: number): void {
+        this.router.navigateByUrl(`product/${id}`).then();
+    }
 
-shoppingCart() {
-  this.router.navigate(['cart']);
-}
+    navigateToShoppingCart(): void {
+        this.router.navigate(['cart']);
+    }
 
+    displayedColumns: string[] = [
+        'name',
+        'description',
+        'price',
+        'weight',
+        'image',
+        'supplier',
+        'product-category',
+        'product-details'
+    ];
+    dataSource = this.products;
+
+    addNewProduct(): void {
+        this.dialogService
+            .openDialogForAddProduct()
+            .afterClosed()
+            .subscribe(product => {
+                if (product) {
+                    this.productService.addNewProduct(product).subscribe(newProduct => {
+                        product = newProduct;
+                    });
+                }
+            });
+    }
+
+    canEdit(): boolean {
+        return this.authService.isAuthorised(this.roles);
+    }
+
+    logOut(): void {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+    }
 }

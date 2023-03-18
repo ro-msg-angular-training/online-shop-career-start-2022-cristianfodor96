@@ -1,19 +1,28 @@
-<h1>Shopping Cart</h1>
-<button (click)="clearCart()">Clear Cart</button>
-<button>Checkout</button>
-<div class="container">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Supplier</th>
-      <th>Quantity</th>
-    </tr>
-    <tr *ngFor="let cart of populateCart">
-      <td>{{ cart.product.name }}</td>
-      <td>{{ cart.product.price}}</td>
-      <td>{{ cart.product.supplier.name }}</td>
-      <td>{{cart.quantity}}</td>
-    </tr>
-  </table>
-</div>
+<h1 mat-h1>Shopping Cart</h1>
+
+<table mat-table [dataSource]="populateCart" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.price }} lei</td>
+    </ng-container>
+
+    <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef>Supplier</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.supplier.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.quantity }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<button mat-raised-button color="primary" (click)="clearCart()">Clear Cart</button>
+<button mat-raised-button color="primary" (click)="createOrder()">Checkout</button>
