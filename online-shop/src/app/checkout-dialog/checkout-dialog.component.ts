@@ -14,7 +14,6 @@ export class CheckoutDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.checkoutForm = this.fb.group({
-            created: '',
             city: '',
             country: '',
             street: '',

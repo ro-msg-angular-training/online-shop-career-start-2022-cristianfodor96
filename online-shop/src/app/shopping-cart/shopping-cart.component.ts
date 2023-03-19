@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DialogService } from '../dialog.service';
 import { CartService } from '../cart.service';
 import { Order } from 'src/order';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -9,7 +10,11 @@ import { Order } from 'src/order';
     styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent {
-    constructor(private cartService: CartService, private dialogService: DialogService) {}
+    constructor(
+        private cartService: CartService,
+        private dialogService: DialogService,
+        private _snackBar: MatSnackBar
+    ) {}
 
     populateCart = this.cartService.getShoppingCartPopulated();
 
@@ -24,7 +29,7 @@ export class ShoppingCartComponent {
                 const order: Order = { ...data, orderDetails };
                 this.cartService.createOrder(order).subscribe(newOrder => {
                     data = newOrder;
-                    alert('Your order has been sent');
+                    this.openSnackBar('Order sent!');
                     this.cartService.clearCart();
                 });
             });
@@ -32,8 +37,15 @@ export class ShoppingCartComponent {
 
     clearCart(): void {
         this.cartService.clearCart();
+        this.openSnackBar('Cart cleared!');
     }
 
     displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity'];
     dataSource = this.populateCart;
+
+    openSnackBar(message: string): void {
+        this._snackBar.open(message, 'Close', {
+            duration: 3000
+        });
+    }
 }

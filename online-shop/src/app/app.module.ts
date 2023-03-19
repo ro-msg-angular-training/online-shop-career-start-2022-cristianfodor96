@@ -25,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
         MatDialogModule,
         MatTableModule,
         MatCardModule,
-        MatIconModule
+        MatIconModule,
+        MatSnackBarModule
     ],
     providers: [],
     bootstrap: [AppComponent]

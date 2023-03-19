@@ -7,6 +7,7 @@ import { DialogService } from '../dialog.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Role } from 'src/user-details';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-product-details',
@@ -23,7 +24,8 @@ export class ProductDetailsComponent implements OnInit {
         private cartService: CartService,
         private dialogService: DialogService,
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private _snackBar: MatSnackBar
     ) {}
 
     ngOnInit(): void {
@@ -40,13 +42,14 @@ export class ProductDetailsComponent implements OnInit {
             .subscribe(res => {
                 if (res) {
                     this.productService.deletProductById(this.id).subscribe(() => this.router.navigate(['products']));
+                    this.openSnackBar('Product deleted!');
                 }
             });
     }
 
     addProductToCart(): void {
         this.cartService.addProductToCart(this.product);
-        alert('Your product has been added to the cart!');
+        this.openSnackBar('Product added to cart!');
     }
 
     editProduct(): void {
@@ -64,5 +67,11 @@ export class ProductDetailsComponent implements OnInit {
 
     canEdit(): boolean {
         return this.authService.isAuthorised(this.roles);
+    }
+
+    openSnackBar(message: string): void {
+        this._snackBar.open(message, 'Close', {
+            duration: 3000
+        });
     }
 }
