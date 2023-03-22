@@ -26,6 +26,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         LoginPageComponent,
         EditProductComponent,
         AddProductComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        SignUpComponent
     ],
     imports: [
         BrowserModule,

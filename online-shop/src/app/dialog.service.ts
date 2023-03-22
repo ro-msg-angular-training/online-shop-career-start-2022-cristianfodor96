@@ -5,6 +5,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +29,12 @@ export class DialogService {
 
     openDialogForConfirmDelete(): MatDialogRef<ConfirmDialogComponent> {
         return this.dialogRef.open(ConfirmDialogComponent, {
+            disableClose: true
+        });
+    }
+
+    openDialogForSignUp(): MatDialogRef<SignUpComponent> {
+        return this.dialogRef.open(SignUpComponent, {
             disableClose: true
         });
     }

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Role } from 'src/user-details';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-product-details',
@@ -18,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
     id = 0;
     product!: Product;
     roles: Role[] = [Role.admin];
+    product$!: Observable<Product>;
     constructor(
         private route: ActivatedRoute,
         private productService: ProductService,
@@ -34,6 +36,11 @@ export class ProductDetailsComponent implements OnInit {
             this.product = product;
         });
     }
+
+    // ngOnInit(): void {
+    //     this.id = parseInt(this.route.snapshot.paramMap.get('id')!);
+    //     this.product$ = this.productService.getProductById(this.id);
+    // }
 
     deleteProduct(): void {
         this.dialogService

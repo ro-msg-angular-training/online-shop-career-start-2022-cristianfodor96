@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { DialogService } from '../dialog.service';
+import { CustomerService } from '../customer.service';
 
 @Component({
     selector: 'app-login-page',
@@ -14,7 +16,12 @@ export class LoginPageComponent implements OnInit {
     submitted = false;
     loading = false;
 
-    constructor(private fB: FormBuilder, private authService: AuthService, private router: Router) {}
+    constructor(
+        private customerService: CustomerService,
+        private authService: AuthService,
+        private router: Router,
+        private dialogService: DialogService
+    ) {}
 
     ngOnInit(): void {
         this.loginForm = new FormGroup({
@@ -34,6 +41,7 @@ export class LoginPageComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    console.log(data);
                     this.router.navigate(['products']);
                 },
                 error => {
@@ -41,5 +49,19 @@ export class LoginPageComponent implements OnInit {
                     console.warn(error);
                 }
             );
+    }
+
+    signUp(): void {
+        this.dialogService
+            .openDialogForSignUp()
+            .afterClosed()
+            .subscribe(customer => {
+                if (customer) {
+                    this.customerService.addNewCustomer(customer).subscribe(newCustomer => {
+                        customer = newCustomer;
+                        this.router.navigate(['login']);
+                    });
+                }
+            });
     }
 }
