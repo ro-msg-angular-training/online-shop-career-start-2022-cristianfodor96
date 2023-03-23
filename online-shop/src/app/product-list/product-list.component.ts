@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../product';
 import { Router } from '@angular/router';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 import { Subscription } from 'rxjs';
-import { DialogService } from '../dialog.service';
-import { AuthService } from '../auth.service';
+import { DialogService } from '../services/dialog.service';
+import { AuthService } from '../services/auth.service';
 import { Role } from 'src/user-details';
 
 @Component({

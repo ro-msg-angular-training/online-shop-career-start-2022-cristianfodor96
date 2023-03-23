@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from 'src/product';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { SupplierService } from '../supplier.service';
+import { SupplierService } from '../services/supplier.service';
 import { Supplier } from 'src/supplier';
-import { ProductCategoryService } from '../product-category.service';
+import { ProductCategoryService } from '../services/product-category.service';
 import { ProductCategory } from 'src/product-category';
 import { Subscription } from 'rxjs';
 

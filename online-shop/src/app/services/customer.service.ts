@@ -13,4 +13,12 @@ export class CustomerService {
     addNewCustomer(customer: UserDetails): Observable<UserDetails> {
         return this.http.post<UserDetails>(backendURL + 'customers', customer);
     }
+
+    existsByUsername(username: string): Observable<boolean> {
+        return this.http.get<boolean>(backendURL + 'customers/' + username);
+    }
+
+    existsByEmailAddress(emailAddress: string): Observable<boolean> {
+        return this.http.get<boolean>(backendURL + 'customers/' + emailAddress);
+    }
 }

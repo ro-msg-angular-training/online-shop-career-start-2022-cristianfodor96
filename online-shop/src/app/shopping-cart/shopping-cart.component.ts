@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { DialogService } from '../dialog.service';
-import { CartService } from '../cart.service';
+import { DialogService } from '../services/dialog.service';
+import { CartService } from '../services/cart.service';
 import { Order } from 'src/order';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from '../services/snack-bar.service';
+import { SnackBarsTexts } from 'src/snack-bars-texts';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -13,7 +14,7 @@ export class ShoppingCartComponent {
     constructor(
         private cartService: CartService,
         private dialogService: DialogService,
-        private _snackBar: MatSnackBar
+        private snackBarService: SnackBarService
     ) {}
 
     populateCart = this.cartService.getShoppingCartPopulated();
@@ -23,29 +24,24 @@ export class ShoppingCartComponent {
             .openDialogForCheckout()
             .afterClosed()
             .subscribe(data => {
-                const orderDetails = this.populateCart.map(e => {
-                    return { productId: e.product.id, quantity: e.quantity };
-                });
-                const order: Order = { ...data, orderDetails };
-                this.cartService.createOrder(order).subscribe(newOrder => {
-                    data = newOrder;
-                    this.openSnackBar('Order sent!');
-                    this.cartService.clearCart();
-                });
+                if (data) {
+                    const orderDetails = this.populateCart.map(e => {
+                        return { productId: e.product.id, quantity: e.quantity };
+                    });
+                    const order: Order = { ...data, orderDetails };
+                    this.cartService.createOrder(order).subscribe(() => {
+                        this.snackBarService.openSnackBar(SnackBarsTexts.orderConfirmed);
+                        this.cartService.clearCart();
+                    });
+                }
             });
     }
 
     clearCart(): void {
         this.cartService.clearCart();
-        this.openSnackBar('Cart cleared!');
+        this.snackBarService.openSnackBar(SnackBarsTexts.clearCart);
     }
 
     displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity'];
     dataSource = this.populateCart;
-
-    openSnackBar(message: string): void {
-        this._snackBar.open(message, 'Close', {
-            duration: 3000
-        });
-    }
 }

@@ -3,7 +3,6 @@
         <div class="header">
             <h2>New Account</h2>
         </div>
-
         <form [formGroup]="signUpForm">
             <mat-form-field>
                 <mat-label>First Name</mat-label>
@@ -15,8 +14,13 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Username</mat-label>
-                <input matInput formControlName="username" />
+                <div [ngClass]="{ 'is-loading': signUpForm.controls['username'].pending }" class="control"></div>
+                <input matInput formControlName="username" class="input is-focused" type="username" />
+                <mat-error *ngIf="signUpForm.controls['username'].errors?.['usernameExists']">
+                    This username is already taken!
+                </mat-error>
             </mat-form-field>
+
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput type="Password" formControlName="password" />

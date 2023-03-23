@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { DialogService } from '../dialog.service';
-import { CustomerService } from '../customer.service';
+import { DialogService } from '../services/dialog.service';
+import { CustomerService } from '../services/customer.service';
+import { SnackBarService } from '../services/snack-bar.service';
+import { SnackBarsTexts } from 'src/snack-bars-texts';
 
 @Component({
     selector: 'app-login-page',
@@ -20,7 +22,8 @@ export class LoginPageComponent implements OnInit {
         private customerService: CustomerService,
         private authService: AuthService,
         private router: Router,
-        private dialogService: DialogService
+        private dialogService: DialogService,
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit(): void {
@@ -59,6 +62,7 @@ export class LoginPageComponent implements OnInit {
                 if (customer) {
                     this.customerService.addNewCustomer(customer).subscribe(newCustomer => {
                         customer = newCustomer;
+                        this.snackBarService.openSnackBar(SnackBarsTexts.createAccount);
                         this.router.navigate(['login']);
                     });
                 }

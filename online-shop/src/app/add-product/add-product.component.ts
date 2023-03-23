@@ -4,8 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Supplier } from 'src/supplier';
 import { ProductCategory } from 'src/product-category';
 import { Subscription } from 'rxjs';
-import { ProductCategoryService } from '../product-category.service';
-import { SupplierService } from '../supplier.service';
+import { ProductCategoryService } from '../services/product-category.service';
+import { SupplierService } from '../services/supplier.service';
 
 @Component({
     selector: 'app-add-product',

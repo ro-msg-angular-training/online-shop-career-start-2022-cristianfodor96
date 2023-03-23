@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Product } from 'src/product';
-import { AddProductComponent } from './add-product/add-product.component';
-import { CheckoutDialogComponent } from './checkout-dialog/checkout-dialog.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
-import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { AddProductComponent } from '../add-product/add-product.component';
+import { CheckoutDialogComponent } from '../checkout-dialog/checkout-dialog.component';
+import { EditProductComponent } from '../edit-product/edit-product.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Injectable({
     providedIn: 'root'

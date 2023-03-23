@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../product';
-import { ProductService } from '../product.service';
-import { CartService } from '../cart.service';
-import { DialogService } from '../dialog.service';
+import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
+import { DialogService } from '../services/dialog.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Role } from 'src/user-details';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
+import { SnackBarService } from '../services/snack-bar.service';
+import { SnackBarsTexts } from 'src/snack-bars-texts';
 
 @Component({
     selector: 'app-product-details',
@@ -27,7 +28,7 @@ export class ProductDetailsComponent implements OnInit {
         private dialogService: DialogService,
         private router: Router,
         private authService: AuthService,
-        private _snackBar: MatSnackBar
+        private snackBarService: SnackBarService
     ) {}
 
     ngOnInit(): void {
@@ -49,14 +50,14 @@ export class ProductDetailsComponent implements OnInit {
             .subscribe(res => {
                 if (res) {
                     this.productService.deletProductById(this.id).subscribe(() => this.router.navigate(['products']));
-                    this.openSnackBar('Product deleted!');
+                    this.snackBarService.openSnackBar(SnackBarsTexts.deleteProduct);
                 }
             });
     }
 
     addProductToCart(): void {
         this.cartService.addProductToCart(this.product);
-        this.openSnackBar('Product added to cart!');
+        this.snackBarService.openSnackBar(SnackBarsTexts.addToCart);
     }
 
     editProduct(): void {
@@ -74,11 +75,5 @@ export class ProductDetailsComponent implements OnInit {
 
     canEdit(): boolean {
         return this.authService.isAuthorised(this.roles);
-    }
-
-    openSnackBar(message: string): void {
-        this._snackBar.open(message, 'Close', {
-            duration: 3000
-        });
     }
 }

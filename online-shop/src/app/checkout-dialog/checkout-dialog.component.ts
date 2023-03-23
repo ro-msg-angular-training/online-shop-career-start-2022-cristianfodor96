@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-checkout-dialog',
@@ -10,7 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class CheckoutDialogComponent implements OnInit {
     checkoutForm!: FormGroup;
 
-    constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<CheckoutDialogComponent>) {}
+    constructor(private fb: FormBuilder) {}
 
     ngOnInit(): void {
         this.checkoutForm = this.fb.group({

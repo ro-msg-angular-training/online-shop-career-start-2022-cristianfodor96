@@ -1,9 +1,13 @@
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .container {
     width: 250px;
     margin: 0 auto;
+}
+.header {
+    text-align: center;
 }
