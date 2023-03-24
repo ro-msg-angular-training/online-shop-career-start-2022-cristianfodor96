@@ -44,6 +44,7 @@ export class CartService {
 
     clearCart(): void {
         localStorage.clear();
+        this.cartList = [];
     }
 
     createOrder(order: Order): Observable<Order> {

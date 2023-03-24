@@ -1,8 +1,8 @@
 export enum SnackBarsTexts {
-  createAccount = 'Your account has been created!',
-  orderConfirmed = 'Your order has been sent!',
-  deleteProduct = 'Product Deleted!',
-  clearCart = 'Cart cleared!',
-  addToCart = 'Product added to cart!',
-  loggedOut = 'You have been logged out!',
+  CREATE_ACCOUNT = 'Your account has been created!',
+  ORDER_CONFIRMED = 'Your order has been sent!',
+  DELETE_PRODUCT = 'Product Deleted!',
+  CLEAR_CART = 'Cart cleared!',
+  ADD_TO_CART = 'Product added to cart!',
+  LOGGED_OUT = 'You have been logged out!',
 }

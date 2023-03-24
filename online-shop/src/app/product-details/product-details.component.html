@@ -1,4 +1,4 @@
-<div *ngIf="product">
+<div *ngIf="product$ | async as product">
     <h1>Product: {{ product.name }}</h1>
     <div class="product-details">
         <p>Name: {{ product.name }}</p>
@@ -10,8 +10,8 @@
         <p>Category: {{ product.productCategory.name }}</p>
     </div>
     <div class="btns">
-        <button mat-raised-button color="primary" (click)="addProductToCart()">Add to shopping cart</button>
+        <button mat-raised-button color="primary" (click)="addProductToCart(product)">Add to shopping cart</button>
         <button mat-raised-button color="primary" (click)="deleteProduct()" *ngIf="canEdit()">Delete product</button>
-        <button mat-raised-button color="primary" (click)="editProduct()" *ngIf="canEdit()">Edit</button>
+        <button mat-raised-button color="primary" (click)="editProduct(product)" *ngIf="canEdit()">Edit</button>
     </div>
 </div>

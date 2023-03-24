@@ -18,7 +18,6 @@ import { SnackBarsTexts } from 'src/snack-bars-texts';
 })
 export class ProductDetailsComponent implements OnInit {
     id = 0;
-    product!: Product;
     roles: Role[] = [Role.admin];
     product$!: Observable<Product>;
     constructor(
@@ -33,15 +32,8 @@ export class ProductDetailsComponent implements OnInit {
 
     ngOnInit(): void {
         this.id = parseInt(this.route.snapshot.paramMap.get('id')!);
-        this.productService.getProductById(this.id).subscribe(product => {
-            this.product = product;
-        });
+        this.product$ = this.productService.getProductById(this.id);
     }
-
-    // ngOnInit(): void {
-    //     this.id = parseInt(this.route.snapshot.paramMap.get('id')!);
-    //     this.product$ = this.productService.getProductById(this.id);
-    // }
 
     deleteProduct(): void {
         this.dialogService
@@ -50,25 +42,23 @@ export class ProductDetailsComponent implements OnInit {
             .subscribe(res => {
                 if (res) {
                     this.productService.deletProductById(this.id).subscribe(() => this.router.navigate(['products']));
-                    this.snackBarService.openSnackBar(SnackBarsTexts.deleteProduct);
+                    this.snackBarService.openSnackBar(SnackBarsTexts.DELETE_PRODUCT);
                 }
             });
     }
 
-    addProductToCart(): void {
-        this.cartService.addProductToCart(this.product);
-        this.snackBarService.openSnackBar(SnackBarsTexts.addToCart);
+    addProductToCart(product: Product): void {
+        this.cartService.addProductToCart(product);
+        this.snackBarService.openSnackBar(SnackBarsTexts.ADD_TO_CART);
     }
 
-    editProduct(): void {
+    editProduct(product: Product): void {
         this.dialogService
-            .openDialogForProduct(this.product)
+            .openDialogForProduct(product)
             .afterClosed()
-            .subscribe(product => {
-                if (product) {
-                    this.productService.editProdut(product).subscribe(newProduct => {
-                        this.product = newProduct;
-                    });
+            .subscribe(data => {
+                if (data) {
+                    this.product$ = this.productService.editProdut(data);
                 }
             });
     }

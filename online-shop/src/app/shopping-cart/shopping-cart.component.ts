@@ -30,7 +30,7 @@ export class ShoppingCartComponent {
                     });
                     const order: Order = { ...data, orderDetails };
                     this.cartService.createOrder(order).subscribe(() => {
-                        this.snackBarService.openSnackBar(SnackBarsTexts.orderConfirmed);
+                        this.snackBarService.openSnackBar(SnackBarsTexts.ORDER_CONFIRMED);
                         this.cartService.clearCart();
                     });
                 }
@@ -38,8 +38,9 @@ export class ShoppingCartComponent {
     }
 
     clearCart(): void {
+        this.snackBarService.openSnackBar(SnackBarsTexts.CLEAR_CART);
         this.cartService.clearCart();
-        this.snackBarService.openSnackBar(SnackBarsTexts.clearCart);
+        this.populateCart = this.cartService.getShoppingCartPopulated();
     }
 
     displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity'];

@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { DialogService } from '../services/dialog.service';
 import { AuthService } from '../services/auth.service';
 import { Role } from 'src/user-details';
+import { SnackBarService } from '../services/snack-bar.service';
+import { SnackBarsTexts } from 'src/snack-bars-texts';
 
 @Component({
     selector: 'app-product-list',
@@ -17,7 +19,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private router: Router,
         private productService: ProductService,
         private dialogService: DialogService,
-        private authService: AuthService
+        private authService: AuthService,
+        private snackBarService: SnackBarService
     ) {}
 
     products: Product[] = [];
@@ -74,6 +77,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     logOut(): void {
+        this.snackBarService.openSnackBar(SnackBarsTexts.LOGGED_OUT);
         this.authService.logout();
         this.router.navigate(['/login']);
     }

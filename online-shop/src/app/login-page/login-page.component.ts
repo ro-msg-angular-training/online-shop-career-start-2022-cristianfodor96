@@ -62,7 +62,7 @@ export class LoginPageComponent implements OnInit {
                 if (customer) {
                     this.customerService.addNewCustomer(customer).subscribe(newCustomer => {
                         customer = newCustomer;
-                        this.snackBarService.openSnackBar(SnackBarsTexts.createAccount);
+                        this.snackBarService.openSnackBar(SnackBarsTexts.CREATE_ACCOUNT);
                         this.router.navigate(['login']);
                     });
                 }
