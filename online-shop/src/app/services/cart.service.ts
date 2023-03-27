@@ -43,7 +43,7 @@ export class CartService {
     }
 
     clearCart(): void {
-        localStorage.clear();
+        localStorage.removeItem(LocalStorageKeys.shoppingCartKey);
         this.cartList = [];
     }
 

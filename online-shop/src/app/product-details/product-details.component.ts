@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit {
 
     addProductToCart(product: Product): void {
         this.cartService.addProductToCart(product);
-        this.snackBarService.openSnackBar(SnackBarsTexts.ADD_TO_CART);
+        this.snackBarService.openSnackBarForAddingProductToCart();
     }
 
     editProduct(product: Product): void {

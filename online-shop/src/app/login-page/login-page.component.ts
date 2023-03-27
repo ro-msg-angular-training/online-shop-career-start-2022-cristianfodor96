@@ -44,7 +44,6 @@ export class LoginPageComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    console.log(data);
                     this.router.navigate(['products']);
                 },
                 error => {
