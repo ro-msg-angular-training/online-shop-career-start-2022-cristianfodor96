@@ -16,26 +16,26 @@ export class CartService {
     cartList: ShoppingCart[] = this.initializeCart();
 
     private initializeCart(): ShoppingCart[] {
-        const productsExistInLocalStorage = localStorage.getItem(LocalStorageKeys.shoppingCartKey);
+        const productsInLocalStorage = localStorage.getItem(LocalStorageKeys.SHOPPING_CART_KEY);
 
-        if (!productsExistInLocalStorage) {
+        if (!productsInLocalStorage) {
             return [];
         } else {
-            return JSON.parse(productsExistInLocalStorage);
+            return JSON.parse(productsInLocalStorage);
         }
     }
 
     addProductToCart(product: Product): void {
-        const productExistInCart = this.cartList.find(orderItem => orderItem.product.id === product.id);
+        const productsInCart = this.cartList.find(orderItem => orderItem.product.id === product.id);
 
-        if (!productExistInCart) {
+        if (!productsInCart) {
             this.cartList.push({ product, quantity: 1 });
-            localStorage.setItem(LocalStorageKeys.shoppingCartKey, JSON.stringify(this.cartList));
+            localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
             return;
         }
 
-        productExistInCart.quantity += 1;
-        localStorage.setItem(LocalStorageKeys.shoppingCartKey, JSON.stringify(this.cartList));
+        productsInCart.quantity++;
+        localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
     }
 
     getShoppingCartPopulated(): ShoppingCart[] {
@@ -43,7 +43,7 @@ export class CartService {
     }
 
     clearCart(): void {
-        localStorage.removeItem(LocalStorageKeys.shoppingCartKey);
+        localStorage.removeItem(LocalStorageKeys.SHOPPING_CART_KEY);
         this.cartList = [];
     }
 

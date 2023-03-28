@@ -23,7 +23,7 @@
         <mat-form-field>
             <input matInput placeholder="image" formControlName="imgUrl" />
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="suppliers$ | async as suppliers">
             <mat-label>Supplier</mat-label>
             <mat-select formControlName="supplier">
                 <mat-option *ngFor="let supplier of suppliers" [value]="supplier">
@@ -31,7 +31,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="productCategories$ | async as productCategories">
             <mat-label>Category</mat-label>
             <mat-select formControlName="productCategory">
                 <mat-option *ngFor="let category of productCategories" [value]="category">
@@ -42,6 +42,6 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]="null">Cancel</button>
+    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]>Cancel</button>
     <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="productForm.value">Save</button>
 </div>

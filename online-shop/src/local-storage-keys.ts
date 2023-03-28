@@ -1,4 +1,4 @@
 export enum LocalStorageKeys {
-  shoppingCartKey = 'shoppingCart',
-  currentUser = 'currentUser',
+  SHOPPING_CART_KEY = 'shoppingCart',
+  CURRENT_USER = 'currentUser',
 }

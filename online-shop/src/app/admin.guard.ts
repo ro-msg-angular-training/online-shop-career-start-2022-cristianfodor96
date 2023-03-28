@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
 export class AdminGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
-    canActivate(
-        route: ActivatedRouteSnapshot
-    ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    canActivate(route: ActivatedRouteSnapshot): boolean {
         const currentUser = this.authService.currentUserValue;
 
         if (currentUser) {

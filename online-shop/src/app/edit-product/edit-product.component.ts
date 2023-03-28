@@ -6,7 +6,7 @@ import { SupplierService } from '../services/supplier.service';
 import { Supplier } from 'src/supplier';
 import { ProductCategoryService } from '../services/product-category.service';
 import { ProductCategory } from 'src/product-category';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-edit-product',
@@ -15,28 +15,20 @@ import { Subscription } from 'rxjs';
 })
 export class EditProductComponent implements OnInit {
     productForm!: FormGroup;
-    suppliers: Supplier[] = [];
-    productCategories: ProductCategory[] = [];
-    subscription = new Subscription();
+    suppliers$!: Observable<Supplier[]>;
+    productCategories$!: Observable<ProductCategory[]>;
+
     constructor(
         private fb: FormBuilder,
         @Inject(MAT_DIALOG_DATA) public product: Product,
         private supplierService: SupplierService,
-        private categoryService: ProductCategoryService
+        private productCategoryService: ProductCategoryService
     ) {}
 
     ngOnInit(): void {
-        this.subscription.add(
-            this.categoryService.getAllProductCategories().subscribe((data: ProductCategory[]) => {
-                this.productCategories = data;
-            })
-        );
+        this.productCategories$ = this.productCategoryService.getAllProductCategories();
+        this.suppliers$ = this.supplierService.getAllSuppliers();
 
-        this.subscription.add(
-            this.supplierService.getAllSuppliers().subscribe((data: Supplier[]) => {
-                this.suppliers = data;
-            })
-        );
         this.productForm = this.fb.group({
             id: this.product.id ?? '',
             name: this.product.name ?? '',

@@ -29,10 +29,17 @@ export class ShoppingCartComponent {
                         return { productId: e.product.id, quantity: e.quantity };
                     });
                     const order: Order = { ...data, orderDetails };
-                    this.cartService.createOrder(order).subscribe(() => {
-                        this.snackBarService.openSnackBar(SnackBarsTexts.ORDER_CONFIRMED);
-                        this.cartService.clearCart();
-                    });
+                    this.cartService.createOrder(order).subscribe(
+                        () => {
+                            this.snackBarService.openSnackBar(SnackBarsTexts.ORDER_CONFIRMED);
+                            this.cartService.clearCart();
+                            this.populateCart = this.cartService.getShoppingCartPopulated();
+                        },
+                        error => {
+                            this.snackBarService.openSnackBar(SnackBarsTexts.FAILED_ORDER);
+                            console.warn(error);
+                        }
+                    );
                 }
             });
     }

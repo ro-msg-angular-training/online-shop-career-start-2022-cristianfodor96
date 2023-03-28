@@ -17,8 +17,8 @@ import { SnackBarsTexts } from 'src/snack-bars-texts';
     styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-    id = 0;
-    roles: Role[] = [Role.admin];
+    id!: number;
+    roles: Role[] = [Role.ADMIN];
     product$!: Observable<Product>;
     constructor(
         private route: ActivatedRoute,
@@ -39,12 +39,20 @@ export class ProductDetailsComponent implements OnInit {
         this.dialogService
             .openDialogForConfirmDelete()
             .afterClosed()
-            .subscribe(res => {
-                if (res) {
-                    this.productService.deletProductById(this.id).subscribe(() => this.router.navigate(['products']));
-                    this.snackBarService.openSnackBar(SnackBarsTexts.DELETE_PRODUCT);
+            .subscribe(
+                res => {
+                    if (res) {
+                        this.productService
+                            .deletProductById(this.id)
+                            .subscribe(() => this.router.navigate(['products']));
+                        this.snackBarService.openSnackBar(SnackBarsTexts.DELETE_PRODUCT);
+                    }
+                },
+                error => {
+                    this.snackBarService.openSnackBar(SnackBarsTexts.FAILED_TO_DELETE_PRODUCT);
+                    console.warn(error);
                 }
-            });
+            );
     }
 
     addProductToCart(product: Product): void {

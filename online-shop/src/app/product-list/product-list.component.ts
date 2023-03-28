@@ -25,12 +25,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
     products: Product[] = [];
     subscription = new Subscription();
-    roles: Role[] = [Role.admin];
+    admin: Role[] = [Role.ADMIN];
 
     ngOnInit(): void {
         this.subscription.add(
-            this.productService.getAllProducts().subscribe((data: Product[]) => {
-                this.products = data;
+            this.productService.getAllProducts().subscribe((products: Product[]) => {
+                this.products = products;
             })
         );
     }
@@ -40,7 +40,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     navigateToProductById(id: number): void {
-        this.router.navigateByUrl(`product/${id}`).then();
+        this.router.navigateByUrl(`product/${id}`);
     }
 
     navigateToShoppingCart(): void {
@@ -73,7 +73,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
 
     canEdit(): boolean {
-        return this.authService.isAuthorised(this.roles);
+        return this.authService.isAuthorised(this.admin);
     }
 
     logOut(): void {

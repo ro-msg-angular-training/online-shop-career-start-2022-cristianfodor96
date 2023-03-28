@@ -5,4 +5,6 @@ export enum SnackBarsTexts {
   CLEAR_CART = 'Cart cleared!',
   ADD_TO_CART = 'Product added to cart!',
   LOGGED_OUT = 'You have been logged out!',
+  FAILED_ORDER = 'Order could not be created!',
+  FAILED_TO_DELETE_PRODUCT = 'Product could not be deleted!',
 }

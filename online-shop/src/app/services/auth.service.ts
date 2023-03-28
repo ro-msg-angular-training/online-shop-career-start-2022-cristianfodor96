@@ -16,7 +16,7 @@ export class AuthService {
 
     constructor(private httpClient: HttpClient, private router: Router) {
         this.currentUserSubject = new BehaviorSubject<UserDetails>(
-            JSON.parse(localStorage.getItem(LocalStorageKeys.currentUser)!)
+            JSON.parse(localStorage.getItem(LocalStorageKeys.CURRENT_USER)!)
         );
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -29,7 +29,7 @@ export class AuthService {
         return this.httpClient.post<UserDetails>(backendURL + 'login', { username, password }).pipe(
             map(user => {
                 if (user) {
-                    localStorage.setItem(LocalStorageKeys.currentUser, JSON.stringify(user));
+                    localStorage.setItem(LocalStorageKeys.CURRENT_USER, JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }
                 return user;
@@ -38,11 +38,11 @@ export class AuthService {
     }
 
     logout(): void {
-        localStorage.removeItem(LocalStorageKeys.currentUser);
+        localStorage.removeItem(LocalStorageKeys.CURRENT_USER);
     }
 
     public isAuthorised(roles: Role[]): boolean {
-        const currentUser = JSON.parse(localStorage.getItem(LocalStorageKeys.currentUser)!);
+        const currentUser = JSON.parse(localStorage.getItem(LocalStorageKeys.CURRENT_USER)!);
         if (!currentUser) return false;
         return roles.indexOf(currentUser.roles) >= 0;
     }

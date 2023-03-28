@@ -15,8 +15,6 @@ import { SnackBarsTexts } from 'src/snack-bars-texts';
 })
 export class LoginPageComponent implements OnInit {
     loginForm!: FormGroup;
-    submitted = false;
-    loading = false;
 
     constructor(
         private customerService: CustomerService,
@@ -34,11 +32,6 @@ export class LoginPageComponent implements OnInit {
     }
 
     onSubmit(): void {
-        this.submitted = true;
-        if (this.loginForm.invalid) {
-            return;
-        }
-        this.loading = true;
         this.authService
             .login(this.loginForm.value.username, this.loginForm.value.password)
             .pipe(first())
