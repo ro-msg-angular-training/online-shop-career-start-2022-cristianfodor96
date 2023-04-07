@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 
 .shopping-cart {
@@ -21,4 +22,16 @@
 .btns {
     display: flex;
     justify-content: space-between;
+}
+
+th {
+    font-size: 1.4em;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    font-size: 1.3em;
+    padding: 10px;
+    text-align: center;
 }

@@ -8,6 +8,8 @@ import { AuthService } from '../services/auth.service';
 import { Role } from 'src/user-details';
 import { SnackBarService } from '../services/snack-bar.service';
 import { SnackBarsTexts } from 'src/snack-bars-texts';
+import { CartService } from '../services/cart.service';
+import { FavoriteService } from '../services/favorite.service';
 
 @Component({
     selector: 'app-product-list',
@@ -20,7 +22,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private productService: ProductService,
         private dialogService: DialogService,
         private authService: AuthService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private cartService: CartService,
+        private favoriteService: FavoriteService
     ) {}
 
     products: Product[] = [];
@@ -79,5 +83,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.snackBarService.openSnackBar(SnackBarsTexts.LOGGED_OUT);
         this.authService.logout();
         this.router.navigate(['/login']);
+    }
+
+    addProductToCart(product: Product): void {
+        this.cartService.addProductToCart(product);
+        this.snackBarService.openSnackBarForAddingProductToCart();
+    }
+
+    addProductToFavorites(product: Product): void {
+        this.favoriteService.addProductToFavorites(product);
+        this.snackBarService.openSnackBarForAddingProductToFavorites();
+    }
+
+    navigateToFavorites(): void {
+        this.router.navigate(['favorites']);
     }
 }

@@ -1,19 +1,29 @@
-h1 {
-    text-align: center;
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+th {
+    font-size: 1.4em;
+    width: 200px;
+    padding: 10px;
+}
+
+td {
+    font-size: 1.3em;
+    padding: 10px;
 }
 
 .input-quantity {
     width: 7%;
 }
-.mat-column-quantity {
-    width: 200px;
-}
-
-.mat-column-delete {
-    width: 50px;
-}
 
 .increase-decrease-btn {
-    width: 25px;
-    height: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
 }

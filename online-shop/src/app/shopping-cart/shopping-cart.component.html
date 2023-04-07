@@ -1,5 +1,18 @@
-<h1 mat-h1>Shopping Cart</h1>
-
+<div class="container">
+    <div>
+        <h1 mat-h1>Shopping Cart</h1>
+    </div>
+    <div>
+        <button mat-fab extended color="primary" (click)="navigateToFavorites()">
+            <mat-icon>favorite</mat-icon>
+            Favorites
+        </button>
+        <button mat-fab extended color="primary" (click)="navigateToProducts()">
+            <mat-icon>open_in_new</mat-icon>
+            Products
+        </button>
+    </div>
+</div>
 <table mat-table [dataSource]="populateCart" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -20,14 +33,12 @@
     </ng-container>
 
     <ng-container matColumnDef="quantity">
-        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let populateCart">
             <button
                 class="increase-decrease-btn"
-                mat-mini-fab
-                matTooltip="Primary"
+                mat-raised-button
                 color="primary"
-                matTooltip="Basic"
                 (click)="incrementOrDecrementProductQuantity(populateCart.product.id, false)"
                 [disabled]="populateCart.quantity < 2"
             >
@@ -35,31 +46,29 @@
             >{{ populateCart.quantity }}
             <button
                 class="increase-decrease-btn"
-                mat-mini-fab
-                matTooltip="Primary"
+                mat-raised-button
                 color="primary"
                 matTooltip="Basic"
                 (click)="incrementOrDecrementProductQuantity(populateCart.product.id, true)"
             >
                 <mat-icon>+</mat-icon>
             </button>
+
+            <button mat-raised-button color="warn" (click)="deleteProductFromCart(populateCart)">
+                Delete from cart
+            </button>
         </td>
         <td mat-footer-cell *matFooterCellDef>Total: {{ totalProducts() }}</td>
     </ng-container>
-
-    <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let populateCart">
-            <button class="delete-btn" mat-icon-button color="primary" (click)="deleteProductFromCart(populateCart)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>
-<button mat-raised-button color="primary" (click)="clearCart()">Clear Cart</button>
-<button mat-raised-button color="primary" (click)="createOrder()">Checkout</button>
+<div class="btns">
+    <div>
+        <button mat-raised-button color="primary" (click)="createOrder()">Checkout</button>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="clearCart()">Clear Cart</button>
+    </div>
+</div>

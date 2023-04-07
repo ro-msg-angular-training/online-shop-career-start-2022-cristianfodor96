@@ -27,7 +27,6 @@ export class CartService {
 
     addProductToCart(product: Product): void {
         const productsInCart = this.cartList.find(orderItem => orderItem.product.id === product.id);
-        console.log(productsInCart);
         if (!productsInCart) {
             this.cartList.push({ product, quantity: 1 });
             localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));

@@ -23,4 +23,13 @@ export class SnackBarService {
             .onAction()
             .subscribe(() => this.router.navigate(['cart']));
     }
+
+    openSnackBarForAddingProductToFavorites(): void {
+        this._snackBar
+            .open(SnackBarsTexts.ADD_TO_FAVORITES, 'Go to favorites', {
+                duration: 3000
+            })
+            .onAction()
+            .subscribe(() => this.router.navigate(['favorites']));
+    }
 }

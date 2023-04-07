@@ -5,7 +5,7 @@ import { Order } from 'src/order';
 import { SnackBarService } from '../services/snack-bar.service';
 import { SnackBarsTexts } from 'src/snack-bars-texts';
 import { ShoppingCart } from 'src/shopping-cart';
-import { Product } from 'src/product';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -16,7 +16,8 @@ export class ShoppingCartComponent {
     constructor(
         private cartService: CartService,
         private dialogService: DialogService,
-        private snackBarService: SnackBarService
+        private snackBarService: SnackBarService,
+        private router: Router
     ) {}
 
     populateCart = this.cartService.getShoppingCartPopulated();
@@ -66,6 +67,14 @@ export class ShoppingCartComponent {
         this.cartService.modifyProductQuantity(productId, incrementAction);
     }
 
-    displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity', 'delete'];
+    navigateToProducts(): void {
+        this.router.navigate(['products']);
+    }
+
+    navigateToFavorites(): void {
+        this.router.navigate(['favorites']);
+    }
+
+    displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity'];
     dataSource = this.populateCart;
 }

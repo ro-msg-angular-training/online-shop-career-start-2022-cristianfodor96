@@ -27,6 +27,8 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { FavoriteListComponent } from './favorite-list/favorite-list.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -40,7 +42,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
         EditProductComponent,
         AddProductComponent,
         ConfirmDialogComponent,
-        SignUpComponent
+        SignUpComponent,
+        FavoriteListComponent
     ],
     imports: [
         BrowserModule,
@@ -57,7 +60,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
         MatTableModule,
         MatCardModule,
         MatIconModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatPaginatorModule
     ],
     providers: [],
     bootstrap: [AppComponent]

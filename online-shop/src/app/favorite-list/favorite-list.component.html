@@ -1,0 +1,61 @@
+<div class="container">
+    <div>
+        <h1 mat-h1>Favorites</h1>
+    </div>
+    <div>
+        <button mat-fab extended color="primary" (click)="navigateToShoppingCart()">
+            <mat-icon>shopping</mat-icon>
+            Shopping cart
+        </button>
+        <button mat-fab extended color="primary" (click)="navigateToProducts()">
+            <mat-icon>open_in_new</mat-icon>
+            Products
+        </button>
+    </div>
+</div>
+<table mat-table [dataSource]="populateFavorites" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let populateFavorites">{{ populateFavorites.product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let populateFavorites">{{ populateFavorites.product.price }} lei</td>
+    </ng-container>
+
+    <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef>Supplier</th>
+        <td mat-cell *matCellDef="let populateFavorites">{{ populateFavorites.product.supplier.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let populateFavorites">
+            <img
+                class="product-img"
+                src="{{ populateFavorites.product.imgUrl }}"
+                alt="{{ populateFavorites.product.name }}"
+            />
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let populateFavorites">
+            <button mat-raised-button color="warn" (click)="deleteProductFromFavorites(populateFavorites)">
+                Delete from favorites
+            </button>
+            <button mat-raised-button color="warn" (click)="addProductToCart(populateFavorites.product)">
+                Add Product to cart
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<div class="btns">
+    <button mat-raised-button color="primary" (click)="clearFavorites()">Clear favorites</button>
+</div>
