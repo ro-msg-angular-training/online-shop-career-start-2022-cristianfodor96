@@ -4,6 +4,8 @@ import { CartService } from '../services/cart.service';
 import { Order } from 'src/order';
 import { SnackBarService } from '../services/snack-bar.service';
 import { SnackBarsTexts } from 'src/snack-bars-texts';
+import { ShoppingCart } from 'src/shopping-cart';
+import { Product } from 'src/product';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -18,6 +20,7 @@ export class ShoppingCartComponent {
     ) {}
 
     populateCart = this.cartService.getShoppingCartPopulated();
+    getTotal = this.cartService.getTotal();
 
     createOrder(): void {
         this.dialogService
@@ -50,6 +53,19 @@ export class ShoppingCartComponent {
         this.populateCart = this.cartService.getShoppingCartPopulated();
     }
 
-    displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity'];
+    totalProducts(): number {
+        return (this.getTotal = this.cartService.getTotal());
+    }
+
+    deleteProductFromCart(product: ShoppingCart): void {
+        this.cartService.deleteProductFromCart(product);
+        this.populateCart = this.cartService.getShoppingCartPopulated();
+    }
+
+    incrementOrDecrementProductQuantity(productId: number, incrementAction: boolean): void {
+        this.cartService.modifyProductQuantity(productId, incrementAction);
+    }
+
+    displayedColumns: string[] = ['name', 'price', 'supplier', 'quantity', 'delete'];
     dataSource = this.populateCart;
 }

@@ -27,15 +27,22 @@ export class CartService {
 
     addProductToCart(product: Product): void {
         const productsInCart = this.cartList.find(orderItem => orderItem.product.id === product.id);
-
+        console.log(productsInCart);
         if (!productsInCart) {
             this.cartList.push({ product, quantity: 1 });
             localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
             return;
         }
-
         productsInCart.quantity++;
         localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
+    }
+
+    modifyProductQuantity(productId: number, incrementAction: boolean): void {
+        const productInCart = this.cartList.find(orderItem => orderItem.product.id === productId);
+        if (productInCart) {
+            incrementAction ? productInCart.quantity++ : productInCart.quantity--;
+            localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
+        }
     }
 
     getShoppingCartPopulated(): ShoppingCart[] {
@@ -49,5 +56,18 @@ export class CartService {
 
     createOrder(order: Order): Observable<Order> {
         return this.http.post<Order>(backendURL + 'orders', order);
+    }
+
+    getTotal(): number {
+        let productsCount = 0;
+        for (const product of this.cartList) {
+            productsCount += product.quantity;
+        }
+        return productsCount;
+    }
+
+    deleteProductFromCart(product: ShoppingCart): void {
+        this.cartList = this.cartList.filter(item => item.product.id !== product.product.id);
+        localStorage.setItem(LocalStorageKeys.SHOPPING_CART_KEY, JSON.stringify(this.cartList));
     }
 }

@@ -52,7 +52,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         'description',
         'price',
         'weight',
-        'image',
         'supplier',
         'product-category',
         'product-details'

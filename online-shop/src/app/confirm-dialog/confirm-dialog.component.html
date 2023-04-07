@@ -1,8 +1,8 @@
-<mat-icon (click)="closeDialog()">close</mat-icon>
+<mat-icon class="close-icon" (click)="closeDialog()">close</mat-icon>
 <div class="content-container">
     <div>
         <span class="conten-span full-width">Are you sure you want to delete the product?</span>
     </div>
-    <button mat-raised-button color="primary" [mat-dialog-close]="false">NO</button>
     <button mat-raised-button color="primary" [mat-dialog-close]="true">YES</button>
+    <button class="cancel-btn" mat-raised-button color="primary" [mat-dialog-close]="false">NO</button>
 </div>

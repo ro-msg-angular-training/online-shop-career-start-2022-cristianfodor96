@@ -17,9 +17,12 @@ import { SnackBarsTexts } from 'src/snack-bars-texts';
     styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
+    title = 'Online-Shop';
     id!: number;
     roles: Role[] = [Role.ADMIN];
     product$!: Observable<Product>;
+    canEdit!: boolean;
+
     constructor(
         private route: ActivatedRoute,
         private productService: ProductService,
@@ -33,6 +36,7 @@ export class ProductDetailsComponent implements OnInit {
     ngOnInit(): void {
         this.id = parseInt(this.route.snapshot.paramMap.get('id')!);
         this.product$ = this.productService.getProductById(this.id);
+        this.canEdit = this.authService.isAuthorised(this.roles);
     }
 
     deleteProduct(): void {
@@ -64,14 +68,10 @@ export class ProductDetailsComponent implements OnInit {
         this.dialogService
             .openDialogForProduct(product)
             .afterClosed()
-            .subscribe(data => {
-                if (data) {
-                    this.product$ = this.productService.editProdut(data);
+            .subscribe(product => {
+                if (product) {
+                    this.product$ = this.productService.editProdut(product);
                 }
             });
-    }
-
-    canEdit(): boolean {
-        return this.authService.isAuthorised(this.roles);
     }
 }

@@ -1,17 +1,21 @@
-<div *ngIf="product$ | async as product">
-    <h1>Product: {{ product.name }}</h1>
+<div class="container" *ngIf="product$ | async as product">
     <div class="product-details">
+        <h1>{{ product.name }}</h1>
         <p>Name: {{ product.name }}</p>
-        <p>Description: {{ product.description }}</p>
+        <p class="description">Description: {{ product.description }}</p>
         <p>Price: {{ product.price }} lei</p>
         <p>Weight: {{ product.weight }}</p>
-        <p>Image: {{ product.imgUrl }}</p>
         <p>Supplier: {{ product.supplier.name }}</p>
         <p>Category: {{ product.productCategory.name }}</p>
-    </div>
-    <div class="btns">
-        <button mat-raised-button color="primary" (click)="addProductToCart(product)">Add to shopping cart</button>
-        <button mat-raised-button color="primary" (click)="deleteProduct()" *ngIf="canEdit()">Delete product</button>
-        <button mat-raised-button color="primary" (click)="editProduct(product)" *ngIf="canEdit()">Edit</button>
+        <div><img class="product-image" src="{{ product.imgUrl }}" alt="{{ product.name }}" /></div>
+        <button [ngClass]="canEdit ? 'admin' : 'customer'" mat-button (click)="addProductToCart(product)">
+            Add to shopping cart
+        </button>
+        <button class="delete-product-btn" mat-raised-button color="primary" (click)="deleteProduct()" *ngIf="canEdit">
+            Delete product
+        </button>
+        <button class="edit-btn" mat-raised-button color="primary" (click)="editProduct(product)" *ngIf="canEdit">
+            Edit
+        </button>
     </div>
 </div>

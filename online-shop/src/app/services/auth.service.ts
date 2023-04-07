@@ -41,7 +41,7 @@ export class AuthService {
         localStorage.removeItem(LocalStorageKeys.CURRENT_USER);
     }
 
-    public isAuthorised(roles: Role[]): boolean {
+    isAuthorised(roles: Role[]): boolean {
         const currentUser = JSON.parse(localStorage.getItem(LocalStorageKeys.CURRENT_USER)!);
         if (!currentUser) return false;
         return roles.indexOf(currentUser.roles) >= 0;
