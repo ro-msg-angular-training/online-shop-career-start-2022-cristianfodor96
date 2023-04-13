@@ -31,7 +31,7 @@ export class LoginPageComponent implements OnInit {
         });
     }
 
-    onSubmit(): void {
+    login(): void {
         this.authService
             .login(this.loginForm.value.username, this.loginForm.value.password)
             .pipe(first())

@@ -48,17 +48,16 @@
                 class="increase-decrease-btn"
                 mat-raised-button
                 color="primary"
-                matTooltip="Basic"
                 (click)="incrementOrDecrementProductQuantity(populateCart.product.id, true)"
             >
                 <mat-icon>+</mat-icon>
             </button>
 
             <button mat-raised-button color="warn" (click)="deleteProductFromCart(populateCart)">
-                Delete from cart
+                <mat-icon>delete</mat-icon>
             </button>
         </td>
-        <td mat-footer-cell *matFooterCellDef>Total: {{ totalProducts() }}</td>
+        <td mat-footer-cell *matFooterCellDef>Total: {{ totalProductsQuantity }}</td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
@@ -66,9 +65,15 @@
 </table>
 <div class="btns">
     <div>
-        <button mat-raised-button color="primary" (click)="createOrder()">Checkout</button>
+        <button mat-raised-button color="primary" (click)="createOrder()">
+            <mat-icon>checkout</mat-icon>
+            Checkout
+        </button>
     </div>
     <div>
-        <button mat-raised-button color="primary" (click)="clearCart()">Clear Cart</button>
+        <button mat-raised-button color="primary" (click)="clearCart()">
+            <mat-icon>clear</mat-icon>
+            Clear Cart
+        </button>
     </div>
 </div>

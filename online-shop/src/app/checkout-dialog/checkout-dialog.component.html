@@ -18,6 +18,12 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]>Cancel</button>
-    <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="checkoutForm.value">Save</button>
+    <button mat-raised-button color="primary" class="btn btn-cancel" [mat-dialog-close]>
+        <mat-icon>close</mat-icon>
+        Cancel
+    </button>
+    <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="checkoutForm.value">
+        <mat-icon>save</mat-icon>
+        Save
+    </button>
 </div>

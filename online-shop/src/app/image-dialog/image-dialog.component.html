@@ -1,0 +1,8 @@
+<div mat-dialog-actions align="end">
+    <mat-icon aria-hidden="false" fontIcon="close" [mat-dialog-close]></mat-icon>
+</div>
+<div class="container" mat-dialog-content>
+    <form [formGroup]="imageForm">
+        <img src="{{ product.imgUrl }}" alt="" />
+    </form>
+</div>

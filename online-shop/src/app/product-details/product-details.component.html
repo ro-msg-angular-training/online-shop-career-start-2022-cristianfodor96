@@ -9,13 +9,24 @@
         <p>Category: {{ product.productCategory.name }}</p>
         <div><img class="product-image" src="{{ product.imgUrl }}" alt="{{ product.name }}" /></div>
         <button [ngClass]="canEdit ? 'admin' : 'customer'" mat-button (click)="addProductToCart(product)">
+            <mat-icon>shopping</mat-icon>
             Add to shopping cart
         </button>
-        <button class="delete-product-btn" mat-raised-button color="primary" (click)="deleteProduct()" *ngIf="canEdit">
-            Delete product
-        </button>
-        <button class="edit-btn" mat-raised-button color="primary" (click)="editProduct(product)" *ngIf="canEdit">
-            Edit
-        </button>
+        <ng-template ngIf="canEdit">
+            <button
+                class="delete-product-btn"
+                mat-raised-button
+                color="primary"
+                (click)="deleteProduct()"
+                *ngIf="canEdit"
+            >
+                <mat-icon>delete</mat-icon>
+                Delete product
+            </button>
+            <button class="edit-btn" mat-raised-button color="primary" (click)="editProduct(product)" *ngIf="canEdit">
+                <mat-icon>edit</mat-icon>
+                Edit
+            </button>
+        </ng-template>
     </div>
 </div>

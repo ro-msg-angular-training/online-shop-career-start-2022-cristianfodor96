@@ -66,7 +66,7 @@ export class ProductDetailsComponent implements OnInit {
 
     editProduct(product: Product): void {
         this.dialogService
-            .openDialogForProduct(product)
+            .openDialogForEditProduct(product)
             .afterClosed()
             .subscribe(product => {
                 if (product) {

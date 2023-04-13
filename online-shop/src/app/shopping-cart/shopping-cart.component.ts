@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../services/dialog.service';
 import { CartService } from '../services/cart.service';
 import { Order } from 'src/order';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent {
+export class ShoppingCartComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private dialogService: DialogService,
@@ -20,8 +20,13 @@ export class ShoppingCartComponent {
         private router: Router
     ) {}
 
-    populateCart = this.cartService.getShoppingCartPopulated();
-    getTotal = this.cartService.getTotal();
+    totalProductsQuantity!: number;
+    populateCart!: ShoppingCart[];
+
+    ngOnInit(): void {
+        this.totalProductsQuantity = this.cartService.getTotalProductsQuantity();
+        this.populateCart = this.cartService.getShoppingCartPopulated();
+    }
 
     createOrder(): void {
         this.dialogService
@@ -54,17 +59,15 @@ export class ShoppingCartComponent {
         this.populateCart = this.cartService.getShoppingCartPopulated();
     }
 
-    totalProducts(): number {
-        return (this.getTotal = this.cartService.getTotal());
-    }
-
     deleteProductFromCart(product: ShoppingCart): void {
         this.cartService.deleteProductFromCart(product);
         this.populateCart = this.cartService.getShoppingCartPopulated();
+        this.totalProductsQuantity = this.cartService.getTotalProductsQuantity();
     }
 
     incrementOrDecrementProductQuantity(productId: number, incrementAction: boolean): void {
         this.cartService.modifyProductQuantity(productId, incrementAction);
+        this.totalProductsQuantity = this.cartService.getTotalProductsQuantity();
     }
 
     navigateToProducts(): void {

@@ -6,6 +6,7 @@ import { CheckoutDialogComponent } from '../checkout-dialog/checkout-dialog.comp
 import { EditProductComponent } from '../edit-product/edit-product.component';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class DialogService {
         return this.dialogRef.open(CheckoutDialogComponent);
     }
 
-    openDialogForProduct(product?: Product): MatDialogRef<EditProductComponent> {
+    openDialogForEditProduct(product?: Product): MatDialogRef<EditProductComponent> {
         return this.dialogRef.open(EditProductComponent, {
             data: product
         });
@@ -36,6 +37,12 @@ export class DialogService {
     openDialogForSignUp(): MatDialogRef<SignUpComponent> {
         return this.dialogRef.open(SignUpComponent, {
             disableClose: true
+        });
+    }
+
+    openDialogForImagePreview(product: Product): MatDialogRef<ImageDialogComponent> {
+        return this.dialogRef.open(ImageDialogComponent, {
+            data: product
         });
     }
 }

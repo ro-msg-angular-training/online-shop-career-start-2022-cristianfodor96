@@ -29,6 +29,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
     declarations: [
@@ -43,7 +47,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         AddProductComponent,
         ConfirmDialogComponent,
         SignUpComponent,
-        FavoriteListComponent
+        FavoriteListComponent,
+        ImageDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -61,7 +66,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatCardModule,
         MatIconModule,
         MatSnackBarModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatBadgeModule
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -8,6 +8,7 @@ export enum SnackBarsTexts {
   LOGGED_OUT = 'You have been logged out!',
   FAILED_ORDER = 'Order could not be created!',
   FAILED_TO_DELETE_PRODUCT = 'Product could not be deleted!',
-  ADD_TO_FAVORITES = 'Produt added to favorites!',
+  ADD_TO_FAVORITES = 'Product added to favorites!',
   PRODUCT_EXISTS_IN_FAVORITES = 'Product already in yout favorites!',
+  PRODUCT_DELETED_FROM_FAVORITES = 'Product deleted from favorites!',
 }

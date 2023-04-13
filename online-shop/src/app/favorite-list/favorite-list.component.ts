@@ -1,26 +1,32 @@
-import { Component } from '@angular/core';
-import { FavoriteService } from '../services/favorite.service';
+import { Component, OnInit } from '@angular/core';
+import { FavoriteService } from '../services/favorites.service';
 import { SnackBarService } from '../services/snack-bar.service';
 import { SnackBarsTexts } from 'src/snack-bars-texts';
 import { Router } from '@angular/router';
 import { Favorites } from 'src/favorites';
 import { Product } from 'src/product';
 import { CartService } from '../services/cart.service';
+import { DialogService } from '../services/dialog.service';
 
 @Component({
     selector: 'app-favorite-list',
     templateUrl: './favorite-list.component.html',
     styleUrls: ['./favorite-list.component.scss']
 })
-export class FavoriteListComponent {
+export class FavoriteListComponent implements OnInit {
     constructor(
         private favoritesService: FavoriteService,
         private snackBarService: SnackBarService,
         private router: Router,
-        private cartService: CartService
+        private cartService: CartService,
+        private dialogService: DialogService
     ) {}
 
-    populateFavorites = this.favoritesService.getFavoritesPopulated();
+    populateFavorites!: Favorites[];
+
+    ngOnInit(): void {
+        this.populateFavorites = this.favoritesService.getFavoritesPopulated();
+    }
 
     clearFavorites(): void {
         this.snackBarService.openSnackBar(SnackBarsTexts.CLEAR_FAVORITES);
@@ -33,6 +39,7 @@ export class FavoriteListComponent {
     }
 
     deleteProductFromFavorites(product: Favorites): void {
+        this.snackBarService.openSnackBar(SnackBarsTexts.PRODUCT_DELETED_FROM_FAVORITES);
         this.favoritesService.deleteProductFromFavorites(product);
         this.populateFavorites = this.favoritesService.getFavoritesPopulated();
     }
@@ -46,6 +53,9 @@ export class FavoriteListComponent {
         this.snackBarService.openSnackBarForAddingProductToCart();
     }
 
+    openDialogForImagePreview(product: Product): void {
+        this.dialogService.openDialogForImagePreview(product);
+    }
     displayedColumns: string[] = ['name', 'price', 'supplier', 'image', 'delete'];
     dataSource = this.populateFavorites;
 }

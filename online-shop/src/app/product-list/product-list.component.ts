@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../../product';
 import { Router } from '@angular/router';
 import { ProductService } from '../services/product.service';
@@ -9,12 +9,14 @@ import { Role } from 'src/user-details';
 import { SnackBarService } from '../services/snack-bar.service';
 import { SnackBarsTexts } from 'src/snack-bars-texts';
 import { CartService } from '../services/cart.service';
-import { FavoriteService } from '../services/favorite.service';
+import { FavoriteService } from '../services/favorites.service';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
     selector: 'app-product-list',
     templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.scss']
+    styleUrls: ['./product-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit, OnDestroy {
     constructor(
@@ -24,19 +26,26 @@ export class ProductListComponent implements OnInit, OnDestroy {
         private authService: AuthService,
         private snackBarService: SnackBarService,
         private cartService: CartService,
-        private favoriteService: FavoriteService
+        private favoritesService: FavoriteService,
+        private changeDetectorRef: ChangeDetectorRef
     ) {}
-
+    @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
     products: Product[] = [];
     subscription = new Subscription();
     admin: Role[] = [Role.ADMIN];
+    canEdit!: boolean;
+    populateFavorites = this.favoritesService.getFavoritesPopulated();
+    totalProductsQuantity!: number;
 
     ngOnInit(): void {
         this.subscription.add(
             this.productService.getAllProducts().subscribe((products: Product[]) => {
                 this.products = products;
+                this.changeDetectorRef.detectChanges();
             })
         );
+        this.canEdit = this.authService.isAuthorised(this.admin);
+        this.totalProductsQuantity = this.cartService.getTotalProductsQuantity();
     }
 
     ngOnDestroy(): void {
@@ -75,10 +84,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
             });
     }
 
-    canEdit(): boolean {
-        return this.authService.isAuthorised(this.admin);
-    }
-
     logOut(): void {
         this.snackBarService.openSnackBar(SnackBarsTexts.LOGGED_OUT);
         this.authService.logout();
@@ -88,14 +93,29 @@ export class ProductListComponent implements OnInit, OnDestroy {
     addProductToCart(product: Product): void {
         this.cartService.addProductToCart(product);
         this.snackBarService.openSnackBarForAddingProductToCart();
+        this.totalProductsQuantity = this.cartService.getTotalProductsQuantity();
     }
 
-    addProductToFavorites(product: Product): void {
-        this.favoriteService.addProductToFavorites(product);
-        this.snackBarService.openSnackBarForAddingProductToFavorites();
+    addAndDeleteProductToFavorites(product: Product): void {
+        this.favoritesService.addAndDeleteProductToFavorites(product);
     }
 
     navigateToFavorites(): void {
         this.router.navigate(['favorites']);
+    }
+
+    openMenuForFavorites(): void {
+        this.trigger.openMenu();
+    }
+
+    clearFavorites(): void {
+        this.snackBarService.openSnackBar(SnackBarsTexts.CLEAR_FAVORITES);
+        this.favoritesService.clearFavorites();
+        this.populateFavorites = this.favoritesService.getFavoritesPopulated();
+    }
+
+    checkIfProductIsInFavoriteListOrNot(productId: number): boolean {
+        console.log('adasd');
+        return this.favoritesService.checkIfProductIsInFavoriteListOrNot(productId);
     }
 }

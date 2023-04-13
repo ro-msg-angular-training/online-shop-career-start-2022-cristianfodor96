@@ -57,7 +57,7 @@ export class CartService {
         return this.http.post<Order>(backendURL + 'orders', order);
     }
 
-    getTotal(): number {
+    getTotalProductsQuantity(): number {
         let productsCount = 0;
         for (const product of this.cartList) {
             productsCount += product.quantity;
