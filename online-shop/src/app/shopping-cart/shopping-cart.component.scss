@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+th {
+    font-size: 1.4em;
+    width: 100px;
+    padding: 10px;
+}
+
+td {
+    font-size: 1.3em;
+    padding: 10px;
+}
+
+.input-quantity {
+    width: 7%;
+}
+
+.increase-decrease-btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}

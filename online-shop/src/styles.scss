@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 25px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 25%;
+}
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+  width: 500px;
+  padding: 10px;
+}

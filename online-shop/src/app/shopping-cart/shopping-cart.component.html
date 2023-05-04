@@ -1,0 +1,79 @@
+<div class="container">
+    <div>
+        <h1 mat-h1>Shopping Cart</h1>
+    </div>
+    <div>
+        <button mat-fab extended color="primary" (click)="navigateToFavorites()">
+            <mat-icon>favorite</mat-icon>
+            Favorites
+        </button>
+        <button mat-fab extended color="primary" (click)="navigateToProducts()">
+            <mat-icon>open_in_new</mat-icon>
+            Products
+        </button>
+    </div>
+</div>
+<table mat-table [dataSource]="populateCart" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.name }}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.price }} lei</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="supplier">
+        <th mat-header-cell *matHeaderCellDef>Supplier</th>
+        <td mat-cell *matCellDef="let populateCart">{{ populateCart.product.supplier.name }}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let populateCart">
+            <button
+                class="increase-decrease-btn"
+                mat-raised-button
+                color="primary"
+                (click)="incrementOrDecrementProductQuantity(populateCart.product.id, false)"
+                [disabled]="populateCart.quantity < 2"
+            >
+                <mat-icon>-</mat-icon></button
+            >{{ populateCart.quantity }}
+            <button
+                class="increase-decrease-btn"
+                mat-raised-button
+                color="primary"
+                (click)="incrementOrDecrementProductQuantity(populateCart.product.id, true)"
+            >
+                <mat-icon>+</mat-icon>
+            </button>
+
+            <button mat-raised-button color="warn" (click)="deleteProductFromCart(populateCart)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef>Total: {{ totalProductsQuantity }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
+<div class="btns">
+    <div>
+        <button mat-raised-button color="primary" (click)="createOrder()">
+            <mat-icon>checkout</mat-icon>
+            Checkout
+        </button>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="clearCart()">
+            <mat-icon>clear</mat-icon>
+            Clear Cart
+        </button>
+    </div>
+</div>
